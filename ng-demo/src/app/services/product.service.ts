@@ -9,30 +9,30 @@ export class ProductService {
     constructor(private http: Http) {
 
     }
-
-    getProducts(): Observable<IProduct[]> {
-        return this.http.get("http://localhost:53721/api/Products").map((response: Response) => {
+    // url = "http://localhost:53721/api/Products"
+    getProducts(url:string): Observable<IProduct[]> {
+        return this.http.get(url).map((response: Response) => {
             return <IProduct[]>response.json()
         }).catch(this.handleError)
     }
 
-    getProduct(id: number): Observable<IProduct> {
-        return this.http.get("http://localhost:53721/api/Products/" + id).map((response: Response) => {
+    getProduct(url:string, id: number): Observable<IProduct> {
+        return this.http.get(url +"/"+ id).map((response: Response) => {
             return <IProduct>response.json()
         }).catch(this.handleError)
     }
 
-     postProduct(product): Observable<IProduct> {
+     postProduct(url:string, product): Observable<IProduct> {
         let headers = new Headers({ 'Content-Type': 'application/json' })
         let options = new RequestOptions({ headers: headers })
 
-        return this.http.post('http://localhost:53721/api/Products/', JSON.stringify(product), options).map((response: Response) => {
+        return this.http.post(url, JSON.stringify(product), options).map((response: Response) => {
             return response.json()
         }).catch(this.handleError)
     }
 
-    getText(){
-        return this.http.get("http://localhost:57357/Service1.svc/").map((response: Response) => {
+    getText(url:string){
+        return this.http.get(url).map((response: Response) => {
             return response.json()
         }).catch(this.handleError)
     }

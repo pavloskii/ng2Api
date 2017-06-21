@@ -12,6 +12,7 @@ export class AppComponent {
   result: string = 'The result from the service';
   productId: number = 1;
   productName: string;
+  url:string;
   public product: IProduct;
   public products: IProduct[];
   public text:string;
@@ -21,7 +22,7 @@ export class AppComponent {
   }
 
   getProduct() {
-    this.productService.getProduct(this.productId).subscribe(res => {
+    this.productService.getProduct(this.url, this.productId).subscribe(res => {
       this.product = res;
       this.productId = this.product.Id;
       this.productName = this.product.Name;
@@ -30,18 +31,18 @@ export class AppComponent {
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe(res => {
+    this.productService.getProducts(this.url).subscribe(res => {
       this.products = res;
       console.log(this.products);
     })
   }
 
   postProduct(formValues) {
-    this.productService.postProduct(formValues).subscribe();
+    this.productService.postProduct(this.url, formValues).subscribe();
   }
 
   getText(){
-    this.productService.getText().subscribe(res =>{
+    this.productService.getText(this.url).subscribe(res =>{
       this.text = res;
       console.log(this.text);
     })

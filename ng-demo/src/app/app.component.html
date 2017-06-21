@@ -1,4 +1,5 @@
 <h1>{{title}}</h1>
+<p>URL: <input [(ngModel)]="url" class="form-control"></p>
 <hr>
 <h2>Post Products to server</h2>
 <form #newProduct="ngForm" (ngSubmit)="postProduct(newProduct.value)" autocomplete="off">
