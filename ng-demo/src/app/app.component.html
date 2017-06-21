@@ -1,0 +1,33 @@
+<h1>{{title}}</h1>
+<hr>
+<h2>Post Products to server</h2>
+<form #newProduct="ngForm" (ngSubmit)="postProduct(newProduct.value)" autocomplete="off">
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="Id" name="Id" hidden>
+    <input type="text" class="form-control" [(ngModel)]="Name" name="Name">
+    <button type="submit" class="btn btn-default">Post Product</button>
+  </div>
+</form>
+<hr>
+
+<div class="container">
+  <input [(ngModel)]="productId" class="form-control">
+  <button class="btn btn-default" (click)="getProduct()">Get Product</button>
+  <p><strong>Id:</strong>{{productId}}</p>
+  <p><strong>Name:</strong>{{productName}}</p>
+</div>
+<hr>
+
+<div class="container">
+  <button class="btn btn-default" (click)="getProducts()">Get Products</button>
+  <ul>
+    <li *ngFor="let p of products">{{p.Id}}, {{p.Name}}</li>
+  </ul>
+</div>
+<br>
+<hr>
+
+<div class="container">
+  <h1>{{text}}</h1>
+  <button class="btn btn-default" (click)="getText()">Get Text From Wcf</button>
+</div>
